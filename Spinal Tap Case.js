@@ -5,11 +5,11 @@ function spinalCase(str) {
   // --David St. Hubbins
   var regex = /\s+|_+/g; 
 
-  str.replace(/([a-z])([A-Z])/g, '$1 $2');
+  str = str.replace(/([a-z])([A-Z])/g, '$1 $2');
 
   str = str.replace(regex, '-').toLowerCase();
 
   return str;
 }
 
-console.log(spinalCase('The_Andy_Griffith_Show'));
+console.log(spinalCase('thisIsSpinalTap'));
