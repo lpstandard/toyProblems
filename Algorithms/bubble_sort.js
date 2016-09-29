@@ -6,16 +6,18 @@
 // array is sorted numerically.
 
 function bubbleSort (input) {
-  for(var i = 0; i < input.length - 1; i++){
-    if(input[i] > input[i + 1]){
-      let temp = input[i+1];
-      input[i+1] = input[i]; 
-      input[i] = temp; 
-      i = i - 2; 
+  for(let i = 0 ; i < input.length - 1; i++){
+    for(let j = i + 1; j < input.length; j++){
+      while(input[i] > input[j]){
+        let temp = input[i];
+        input[i] = input[j]; 
+        input[j] = temp; 
+      }
     }
   }
+
   return input; 
 }
-console.log(bubbleSort([ 20, -10, -10, 2, 4, 299 ])); //[ -10, -10, 2, 4, 20, 299 ]
+console.log(bubbleSort([ 20, -10, 10, 4, 299, 29 ])); //[ -10, -10, 2, 4, 20, 299 ]
 
 
