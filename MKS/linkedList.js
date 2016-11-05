@@ -1,60 +1,97 @@
- // Instantiates a new list
- // by setting the head and tail to a
+  // Instantiates a new list
+  // by setting the head and tail to a
   // new node with the initial value
-  var LinkedList = function (initialValue) {
-    this.head = this.tail = new Node(initialValue);
+  function LinkedList(){
+    this.head = null; 
+    this.tail = null; 
   };
 
+  // Add new head
+  LinkedList.prototype.addToHead = function(val){
+    var newNode = new Node(val, this.head, null);
+    // If head already presents, previous points to this new node
+    if(this.head){
+      this.head.pre = newNode; 
+    } else {
+      this.tail = newNode;
+    }
+    this.head = newNode; 
+  }
+
   // Add a new value to the linked list
-  LinkedList.prototype.addToTail = function(val) {
-    var node = new Node(val);
-    if (this.head.value === null) {
-      // The list isn't yet initialized ->
-      // set head and tail values
-      this.head = this.tail = node;
+  LinkedList.prototype.addToTail = function(value) {
+    var newNode = new Node(value, null, this.tail);
+    if (this.tail) {
+      // If tail already presents -> point next
+      this.tail.next = newNode; 
     } else {
-      // First set the current tail's next
       // pointer to point to the new node
-      this.tail.next = node;
-      
-      // Next have the tail point to the
-      // new node
-      this.tail = node; 
+      this.head = newNode;
     }
+      this.tail = newNode; 
   }
 
-  // Remove an element from the head of the list
+  // // Remove an element from the head of the list
   LinkedList.prototype.removeHead = function() {
-    if (this.head.next !== null) {
-      // The list has elements other than head,
-      // so remove the head and move the pointer
-      this.head = this.head.next
-    } else {
-      // Either list is empty or head
-      // is all that's left 
-      this.head = this.tail = null;
+    if (!this.head) { 
+      // The list is empty
+      return null; 
     }
+      var val = this.head.value;
+      this.head = this.head.next; 
+    
+    if(this.head){
+      // head presents
+      this.head.pre = null;
+    } else {
+      this.tail = null;
+    }
+    return val; 
   }
 
-  // Determing if the linked list contains the target value
-  LinkedList.prototype.contains = function(val) {
-    // Starting at the list head,
-    // Keep going through next nodes until either 
-    // we've found the target val or we reach the end
-    var node = this.head, found = false;
-    while (node !== null) {
-      if (node.value === val) {
-        found = true;
-        break;
-      }
-      node = node.next;
+  LinkedList.prototype.removeTail = function() {
+      if (!this.tail) {
+        return null; 
+      }  
+        var val = this.tail.value;
+        this.tail = this.tail.pre; 
+      
+        // tail presents
+      if(this.tail) this.tail.next = null;
+      else this.head = null;
+      return val; 
     }
-    return found;
-  }
+  // // Determing if the linked list contains the target value
+    LinkedList.prototype.search = function(val) {
+      // Starting at the list head,
+      // Keep going through next nodes until either 
+      // we've found the target val or we reach the end
+      var currentNode = this.head;
+      while (currentNode) {
+        if (currentNode.value === val) {
+          return currentNode.value;
+        }
+        currentNode = currentNode.next;
+      }
+      return null;
+    }
 
   // Node class to store node value as well 
   // as next node pointer
-  var Node = function(val, next) {
-    this.value = val || null;
-    this.next = next || null;
+  function Node(val, next, pre){
+    this.value = val;
+    this.next = next;
+    this.pre = pre; 
   }
+
+var ll = new LinkedList();
+
+ll.addToHead(123)
+ll.addToHead('two')
+ll.addToHead(23)
+ll.addToTail(21312)
+ll.addToTail(1231231)
+ll.addToTail(1231)
+
+console.log(ll.search(23))
+ 
