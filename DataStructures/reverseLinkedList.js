@@ -1,21 +1,22 @@
-const reverseLinkedList = (head) => {
+function reverse(head) {
+
+  if(!head || !head.next) {
+    return head;
+  }
+
+  let reversed = head
+  let list_to_do = head.next;
+
+  // begin to reverse
+  reversed.next = null;  
   
-  if(!head || !head.next){
-    return head; 
+  while(list_to_do) {
+    let temp = list_to_do;
+    list_to_do = list_to_do.next;
+
+    temp.next = reversed;
+    reversed = temp;
   }
 
-  let current_head = head.next;
-  let reversed_head = head; 
-  reversed_head.next = null;
-
-  while(current_head) {
-    let temp = current_head;
-    current_head = current_head.next; 
-
-    temp.next = reverse_head;
-    reversed_head = temp; 
-  }
-
-  return reversed_head; 
+  return reversed;
 }
-
