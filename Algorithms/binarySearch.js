@@ -1,21 +1,26 @@
-const binarySearch = (array, key, low, high) => {
+// Given a sorted array of integers, return the index of the given key. 
+// Return -1 if not found.
 
-  let mid = low + Math.floor((high - low) / 2);
-  
-  if(low > high) {
-    return -1;
+const binarySearch = (array, key) => {
+  let result, low = 0, high = array.length - 1;
+
+  while(low <= high) {
+    let mid = low + Math.floor((high - low) / 2);
+    
+    if(array[mid] === key) {
+      return mid;
+    }
+
+    if(key < a[mid]) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+
   }
 
-  if(array[mid] === key){
-    return mid;
-  } else if(array[mid] > key){
-    return binarySearch(array, key, low, (mid - 1));
-  } else {
-    return binarySearch(array, key, (mid + 1), high);
-  }
-  
-
+  return -1;
 }
-let array = [1, 2, 3, 4, 5]
-var ans = binarySearch(array, 3, 0, (array.length - 1));
+
+let ans = binarySearch([1, 2, 3, 4, 5], 3);
 console.log(ans);
