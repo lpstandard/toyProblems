@@ -2,7 +2,7 @@
 // Return -1 if not found.
 
 const binarySearch = (array, key) => {
-  let result, low = 0, high = array.length - 1;
+  let low = 0, high = array.length - 1;
 
   while(low <= high) {
     let mid = low + Math.floor((high - low) / 2);
