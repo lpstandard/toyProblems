@@ -1,32 +1,27 @@
 function Stack(){
-  this.storage = {};
-  this.size = 0; 
+  this.storage = "";
 }
 
-Stack.prototype.push = function(value){
-  this.storage[this.size] = value;
-  this.size++; 
-  return value;
+Stack.prototype.push = function(str){
+  this.storage = this.storage.concat('', str);
+
+  return this.storage;
 }
 
 Stack.prototype.pop = function(){
-  if(this.size){
-    this.size--;
-    var result = this.storage[this.size]; 
-    delete this.storage[this.size]
-    return result;
+  if(this.storage.length === 0){
+    return 
   }
-
-  return undefined; 
+  return this.storage[storage.length - 1];
 }
 
 Stack.prototype.size = function(){
-  return this.size; 
+  return this.storage.length;
 }
 
 stack = new Stack()
-stack.push(1)
-stack.push(12)
+stack.push('Hi')
+stack.push('Hello')
 stack.pop()
 stack.pop()
 
