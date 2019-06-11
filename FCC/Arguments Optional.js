@@ -1,4 +1,3 @@
-
 function addTogether() {
   let arr = Array.prototype.slice.call(arguments);
   console.log(arr.length);
