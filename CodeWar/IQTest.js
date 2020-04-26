@@ -1,4 +1,5 @@
 function iqTest(numbers) {
+    debugger
 
     let even = [];
     let odd = [];
@@ -6,7 +7,6 @@ function iqTest(numbers) {
     numbers = numbers.split(' ').map((value) => {
         return Number(value)
     })
-
     for (let i = 0; i < numbers.length; i++) {
         if (numbers[i] % 2 == 0) {
             even.push({ num: numbers[i], pos: i + 1 });
@@ -18,6 +18,7 @@ function iqTest(numbers) {
 
 }
 
+debugger
 console.log(iqTest("2 4 7 8 10"), 'should be 3');
 console.log(iqTest("1 2 2"), 'should be 1');
 
